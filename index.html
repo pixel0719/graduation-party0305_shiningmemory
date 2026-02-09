@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>SHINING MEMORY - INVITATION</title>
+    <style>
+        :root {
+            --gold: #d4af37;
+            --gold-gradient: linear-gradient(135deg, #fff3b0 0%, #d4af37 40%, #8a6d3b 100%);
+            --navy-dark: #00040a;
+            --navy-light: #001529;
+        }
+
+        body {
+            margin: 0; padding: 0;
+            background-color: var(--navy-dark);
+            color: #fff;
+            font-family: "Times New Roman", "Hiragino Mincho ProN", serif;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        /* 背景：星空とグラデーション */
+        .stars-bg {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at 20% 30%, #1a3a5a 0%, #00040a 100%);
+            z-index: -1;
+        }
+        .stars-bg::after {
+            content: '';
+            position: absolute; width: 100%; height: 100%;
+            background-image: radial-gradient(white, rgba(255,255,255,.2) 1px, transparent 2px);
+            background-size: 100px 100px;
+            opacity: 0.3;
+        }
+
+        section {
+            min-height: 100vh;
+            display: flex; flex-direction: column; align-items: center;
+            padding: 60px 20px; box-sizing: border-box; text-align: center;
+            position: relative;
+        }
+
+        /* --- 表紙デザイン (Canva風) --- */
+        .cover-section {
+            justify-content: center;
+            border: 15px solid transparent; /* 外枠の余白 */
+        }
+
+        /* 金色のコーナー装飾（疑似要素で作成） */
+        .decoration-frame::before, .decoration-frame::after {
+            content: "⚜"; /* 装飾記号 */
+            position: absolute;
+            font-size: 3rem;
+            color: var(--gold);
+            opacity: 0.8;
+        }
+        .decoration-frame::before { top: 40px; left: 40px; transform: rotate(0deg); border-top: 2px solid var(--gold); border-left: 2px solid var(--gold); padding: 10px; }
+        .decoration-frame::after { bottom: 40px; right: 40px; transform: rotate(180deg); border-top: 2px solid var(--gold); border-left: 2px solid var(--gold); padding: 10px; }
+
+        .invitation-title {
+            font-size: 3.5rem;
+            letter-spacing: 0.1em;
+            color: var(--gold);
+            text-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+            margin: 20px 0;
+            font-weight: lighter;
+        }
+
+        .vertical-date {
+            position: absolute;
+            left: 50px;
+            top: 50%;
+            transform: translateY(-50%);
+            writing-mode: vertical-rl;
+            letter-spacing: 0.3em;
+            color: var(--gold);
+            font-size: 1.2rem;
+        }
+
+        .school-name {
+            font-size: 0.9rem;
+            font-style: italic;
+            letter-spacing: 0.1em;
+            color: #fdf5e6;
+            margin-bottom: 50px;
+        }
+
+        /* --- 共通見出し --- */
+        h2 {
+            font-size: 1.6rem; color: var(--gold);
+            letter-spacing: 0.3em; margin-bottom: 30px;
+            border-bottom: 1px solid var(--gold);
+            display: inline-block; padding-bottom: 5px;
+        }
+
+        /* メッセージコンテナ */
+        .msg-container {
+            border: 1px solid var(--gold);
+            padding: 40px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            line-height: 2.2;
+            border-radius: 2px;
+            max-width: 500px;
+        }
+
+        /* --- 席次表 (スマホ対応) --- */
+        .screen-area {
+            width: 80%; max-width: 400px;
+            border: 1px solid var(--gold);
+            padding: 8px; margin-bottom: 40px;
+            font-size: 0.8rem; color: var(--gold);
+        }
+
+        .seating-container {
+            display: flex; justify-content: center; gap: 20px; width: 100%;
+        }
+
+        .table-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 0.5px solid rgba(212, 175, 55, 0.5);
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 3px;
+        }
+
+        .table-name {
+            font-size: 0.7rem; color: var(--gold);
+            border-bottom: 1px solid rgba(212,175,55,0.2);
+            margin-bottom: 5px; font-weight: bold;
+        }
+
+        .member-names { font-size: 0.6rem; color: #eee; }
+
+        @media (max-width: 600px) {
+            .invitation-title { font-size: 2.5rem; }
+            .vertical-date { left: 20px; font-size: 1rem; }
+            .seating-container { flex-direction: column; align-items: center; }
+            .seating-group { width: 90% !important; }
+        }
+
+        /* スケジュール */
+        .timeline { text-align: left; border-left: 1px solid var(--gold); padding-left: 20px; }
+        .time-box { position: relative; padding-bottom: 20px; }
+        .time-box::before {
+            content: ''; position: absolute; left: -25px; top: 5px;
+            width: 9px; height: 9px; background: var(--gold); border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+
+<div class="stars-bg"></div>
+
+<section class="cover-section decoration-frame">
+    <div class="vertical-date">2026.3.5</div>
+    <p style="letter-spacing: 0.5em; font-size: 0.9rem; color: var(--gold); margin-bottom: 10px; font-weight: bold;">
+        GRADUATION PARTY
+    </p>
+    <h1 class="invitation-title" style="line-height: 1.1; margin-bottom: 30px;">
+        SHINING<br>MEMORY
+    </h1>
+    <div style="font-size: 1.1rem; line-height: 1.8; color: #fdf5e6; letter-spacing: 0.1em;">
+        飛鳥未来きずな高等学校<br>
+        福岡天神キャンパス
+    </div>
+</section>
+
+<section>
+    <h2>MESSAGE</h2>
+    <div class="msg-container">
+        本日はご多用中にもかかわらず、<br>
+        お集まりいただき誠にありがとうございます。<br> 
+        皆様に温かく見守られ、今日という良き日を迎えられましたことを、<br>
+        心より幸せに存じます。<br> 
+        本日は、お世話になった先生方へ感謝の気持ちをお伝えしたく、<br>
+        このような場を設けさせていただきました。<br> 
+        クイズや歓談の時間もご用意しております。<br>
+        短い時間ではございますが、<br>
+        どうぞ楽しいひとときをお過ごしください。<br>
+    </div>
+</section>
+
+<section style="padding: 60px 5px;"> <h2>SEATING LIST</h2>
+    <div class="screen-area">SCREEN / STAGE</div>
+    
+    <div style="width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: 20px;">
+        <div class="seating-container" style="display: flex; justify-content: center; gap: 8px; min-width: 360px; align-items: flex-start;">
+            
+            <div class="seating-group" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 4px; width: 38%;">
+                <div class="table-card"><div class="table-name">バラ</div><div class="member-names">氏名</div></div>
+                <div class="table-card"><div class="table-name">藤</div><div class="member-names">氏名</div></div>
+                <div class="table-card"><div class="table-name">ダリア</div><div class="member-names">氏名</div></div>
+                <div class="table-card"><div class="table-name">デイジー</div><div class="member-names">氏名</div></div>
+                <div class="table-card"><div class="table-name">タンポポ</div><div class="member-names">氏名</div></div>
+                <div class="table-card"><div class="table-name">ユリ</div><div class="member-names">氏名</div></div>
+                <div class="table-card"><div class="table-name">アヤメ</div><div class="member-names">氏名</div></div>
+                <div class="table-card"><div class="table-name">スミレ</div><div class="member-names">氏名</div></div>
+            </div>
+
+            <div class="seating-group" style="display: grid; grid-template-columns: 1fr; gap: 4px; width: 19%;">
+                <div class="table-card"><div class="table-name">蓮</div><div class="member-names">氏名</div></div>
+                <div class="table-card"><div class="table-name">梅</div><div class="member-names">氏名</div></div>
+                <div class="table-card"><div class="table-name">ポピー</div><div class="member-names">氏名</div></div>
+                <div class="table-card"><div class="table-name">ネモフィラ</div><div class="member-names">氏名</div></div>
+                <div class="table-card"><div class="table-name">ヒマワリ</div><div class="member-names">氏名</div></div>
+            </div>
+
+            <div class="seating-group" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 4px; width: 38%;">
+                <div class="table-card"><div class="table-name">カスミ</div><div class="member-names">氏名</div></div>
+                <div class="table-card"><div class="table-name">ガーベラ</div><div class="member-names">氏名</div></div>
+                <div class="table-card"><div class="table-name">カーネ</div><div class="member-names">氏名</div></div>
+                <div class="table-card"><div class="table-name">ミモザ</div><div class="member-names">氏名</div></div>
+                <div class="table-card"><div class="table-name">ルピナス</div><div class="member-names">氏名</div></div>
+                <div class="table-card"><div class="table-name">アネモネ</div><div class="member-names">氏名</div></div>
+                <div class="table-card"><div class="table-name">チューリ</div><div class="member-names">氏名</div></div>
+                <div class="table-card"><div class="table-name">ハナミズ</div></div>
+            </div>
+
+        </div>
+    </div>
+    <p style="font-size: 0.6rem; color: var(--gold); opacity: 0.7;">← 左右にスワイプして確認できます →</p>
+</section>
+
+<section>
+    <h2>SCHEDULE</h2>
+    <div class="timeline">
+        <div class="time-box"><b>入場</b></div>
+        <div class="time-box"><b>乾杯の挨拶</b></div>
+        <div class="time-box"><b>オープニング</b></div>
+        <div class="time-box"><b>歓談</b></div>
+        <div class="time-box"><b>出し物</b></div>
+        <div class="time-box"><b>お楽しみ➀</b></div>
+        <div class="time-box"><b>お楽しみ➁</b></div>
+        <div class="time-box"><b>お楽しみ➂</b></div>
+        <div class="time-box"><b>お楽しみ➃</b></div>
+        <div class="time-box"><b>エンディング</b></div>
+        <div class="time-box"><b>退場</b></div>
+    </div>
+</section>
+
+</body>
+</html>
