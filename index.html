@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>SHINING MEMORY - INVITATION</title>
+    <style>
+        :root {
+            --gold: #e2c670;
+            --gold-light: #fff3b0;
+            --sky-blue: #4facfe;
+            --deep-navy: #001d3d;
+            --glass: rgba(255, 255, 255, 0.07);
+            --glass-border: rgba(226, 198, 112, 0.4);
+        }
+
+        body {
+            margin: 0; padding: 0;
+            background: linear-gradient(135deg, #4facfe 0%, #001d3d 40%, #000814 100%);
+            background-attachment: fixed;
+            color: #fdf5e6;
+            font-family: "Times New Roman", "Yu Mincho", "Hiragino Mincho ProN", serif;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        .nebula {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: 
+                radial-gradient(circle at 10% 20%, rgba(255,255,255,0.1) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(79, 172, 254, 0.15) 0%, transparent 50%);
+            filter: blur(60px);
+            z-index: -2;
+        }
+
+        .stars-canvas {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+        }
+
+        section {
+            min-height: 100vh;
+            display: flex; flex-direction: column; align-items: center;
+            padding: 80px 20px; box-sizing: border-box; text-align: center;
+        }
+
+        .glass-card {
+            background: var(--glass);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4), inset 0 0 15px rgba(255,255,255,0.05);
+            padding: 40px 30px;
+            width: 100%; max-width: 600px;
+            position: relative;
+            margin-bottom: 40px;
+        }
+
+        h2 {
+            font-size: 1.3rem; color: var(--gold);
+            letter-spacing: 0.4em; margin-bottom: 30px;
+            text-shadow: 0 0 10px rgba(226, 198, 112, 0.5);
+            display: inline-block;
+            border-bottom: 1px solid var(--gold);
+            padding-bottom: 10px;
+        }
+
+        .invitation-title { 
+            font-size: clamp(2.5rem, 8vw, 3.8rem); 
+            letter-spacing: 0.1em; 
+            background: linear-gradient(to bottom, #fff, var(--gold-light), var(--gold));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            margin: 15px 0; font-weight: bold;
+            filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.4));
+        }
+
+        /* --- メッセージエリアの修正ポイント --- */
+        .message-content {
+            line-height: 2.8;
+            font-size: 1rem;
+            text-align: center; /* 中央揃え */
+            letter-spacing: 0.05em;
+            word-break: keep-all; /* 単語の途中で改行させない */
+        }
+
+        .seating-wrapper { width: 100%; overflow-x: auto; padding-bottom: 10px; }
+        .seating-container { 
+            display: grid; grid-template-columns: repeat(5, 120px); gap: 12px; 
+            margin: 0 auto; width: max-content; padding: 0 10px;
+        }
+        .table-card { 
+            background: rgba(255, 255, 255, 0.05); 
+            border: 0.5px solid var(--glass-border); 
+            padding: 12px 5px; border-radius: 4px;
+        }
+        .table-name { font-size: 0.75rem; color: var(--gold); margin-bottom: 6px; font-weight: bold; border-bottom: 0.5px solid var(--glass-border); padding-bottom: 4px; }
+        .member-names { font-size: 0.7rem; color: #fff; }
+
+        .timeline { position: relative; max-width: 280px; margin: 0 auto; text-align: left; }
+        .time-box {
+            position: relative; padding: 0 0 25px 30px; color: #fdf5e6; font-size: 0.95rem;
+        }
+        .time-box::before {
+            content: ''; position: absolute; left: 0; top: 6px;
+            width: 10px; height: 10px; background: var(--gold-light);
+            border-radius: 50%; box-shadow: 0 0 10px var(--gold);
+            z-index: 2;
+        }
+        .time-box::after {
+            content: ''; position: absolute; left: 4.5px; top: 10px; bottom: 0;
+            width: 1px; background: rgba(226, 198, 112, 0.3);
+            z-index: 1;
+        }
+        .time-box:last-child::after { display: none; }
+
+        @media (max-width: 600px) {
+            .glass-card { padding: 30px 20px; width: 90%; }
+            .message-content { font-size: 0.9rem; line-height: 2.4; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="nebula"></div>
+<div class="stars-canvas" id="starsField"></div>
+
+<section>
+    <div class="glass-card">
+        <p style="letter-spacing: 0.6em; font-size: 0.8rem; color: var(--gold); margin-bottom: 10px; font-weight: bold;">GRADUATION PARTY</p>
+        <h1 class="invitation-title">SHINING<br>MEMORY</h1>
+        <div style="font-size: 1rem; line-height: 2; opacity: 0.9;">
+            飛鳥未来きずな高等学校<br>福岡天神キャンパス
+        </div>
+        <p style="margin-top: 20px; color: var(--gold);">2026.03.05</p>
+    </div>
+</section>
+
+<section>
+    <div class="glass-card">
+        <h2>MESSAGE</h2>
+        <div class="message-content">
+            本日はご多用中にもかかわらず<br>
+            お集まりいただき誠にありがとうございます。<br>
+            皆様に温かく見守られ<br>
+            今日という良き日を迎えられましたことを<br>
+            心より幸せに存じます。<br>
+            お世話になった先生方へ<br>
+            感謝の気持ちをお伝えしたく<br>
+            このような場を設けさせていただきました。<br>
+            どうぞ楽しいひとときをお過ごしください。
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="glass-card" style="max-width: 750px;">
+        <h2>SEATING LIST</h2>
+        <div style="width: 80%; border: 1px solid var(--gold); padding: 8px; margin: 0 auto 30px; font-size: 0.8rem; color: var(--gold);">SCREEN / STAGE</div>
+        <div class="seating-wrapper">
+            <div class="seating-container">
+               <div style="display: grid; gap: 15px;">
+                <div class="table-card"><div class="table-name">バラ</div><div class="member-names">氏名 様</div></div>
+                <div class="table-card"><div class="table-name">ダリア</div><div class="member-names">氏名 様</div></div>
+                <div class="table-card"><div class="table-name">タンポポ</div><div class="member-names">氏名 様</div></div>
+                <div class="table-card"><div class="table-name">アヤメ</div><div class="member-names">氏名 様</div></div>
+            </div>
+            <div style="display: grid; gap: 15px;">
+                <div class="table-card"><div class="table-name">藤</div><div class="member-names">氏名 様</div></div>
+                <div class="table-card"><div class="table-name">デイジー</div><div class="member-names">氏名 様</div></div>
+                <div class="table-card"><div class="table-name">ユリ</div><div class="member-names">氏名 様</div></div>
+                <div class="table-card"><div class="table-name">スミレ</div><div class="member-names">氏名 様</div></div>
+            </div>
+            <div style="display: grid; gap: 15px;">
+                <div class="table-card"><div class="table-name">蓮</div><div class="member-names">氏名 様</div></div>
+                <div class="table-card"><div class="table-name">梅</div><div class="member-names">氏名 様</div></div>
+                <div class="table-card"><div class="table-name">ポピー</div><div class="member-names">氏名 様</div></div>
+                <div class="table-card"><div class="table-name">ネモフィラ</div><div class="member-names">氏名 様</div></div>
+                <div class="table-card"><div class="table-name">ヒマワリ</div><div class="member-names">氏名 様</div></div>
+            </div>
+            <div style="display: grid; gap: 15px;">
+                <div class="table-card"><div class="table-name">カスミソウ</div><div class="member-names">氏名 様</div></div>
+                <div class="table-card"><div class="table-name">カーネーション</div><div class="member-names">氏名 様</div></div>
+                <div class="table-card"><div class="table-name">ルピナス</div><div class="member-names">氏名 様</div></div>
+                <div class="table-card"><div class="table-name">チューリップ</div><div class="member-names">氏名 様</div></div>
+            </div>
+            <div style="display: grid; gap: 15px;">
+                <div class="table-card"><div class="table-name">ガーベラ</div><div class="member-names">氏名 様</div></div>
+                <div class="table-card"><div class="table-name">ミモザ</div><div class="member-names">氏名 様</div></div>
+                <div class="table-card"><div class="table-name">アネモネ</div><div class="member-names">氏名 様</div></div>
+                <div class="table-card"><div class="table-name">ハナミズキ</div><div class="member-names">氏名 様</div></div>
+            </div>
+        </div>
+    </div>
+        <div style="font-size: 0.7rem; color: var(--gold); margin-top: 20px; opacity: 0.8;">
+            〈 左右にスワイプしてご確認ください 〉
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="glass-card">
+        <h2>SCHEDULE</h2>
+        <div class="timeline">
+        <div class="time-box">入場</div>
+        <div class="time-box">オープニング</div>
+        <div class="time-box">乾杯の挨拶</div>
+        <div class="time-box">歓談</div>
+        <div class="time-box">スペシャルイベント</div>
+        <div class="time-box">お楽しみ企画 ➀</div>
+        <div class="time-box">お楽しみ企画 ➁</div>
+        <div class="time-box">お楽しみ企画 ➂</div>
+        <div class="time-box">お楽しみ企画 ➃</div>
+        <div class="time-box">エンディング</div>
+        <div class="time-box">退場</div>
+        </div>
+    </div>
+</section>
+
+<script>
+    const field = document.getElementById('starsField');
+    const starCount = 120;
+    for (let i = 0; i < starCount; i++) {
+        const star = document.createElement('div');
+        const size = Math.random() * 2 + 1;
+        star.style.position = 'absolute';
+        star.style.left = Math.random() * 100 + '%';
+        star.style.top = Math.random() * 100 + '%';
+        star.style.width = size + 'px';
+        star.style.height = size + 'px';
+        star.style.backgroundColor = '#fff';
+        star.style.borderRadius = '50%';
+        star.style.animation = `twinkle ${Math.random() * 3 + 2}s infinite ease-in-out`;
+        field.appendChild(star);
+    }
+    const styleSheet = document.createElement("style");
+    styleSheet.innerText = `@keyframes twinkle { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }`;
+    document.head.appendChild(styleSheet);
+</script>
+
+</body>
+</html>
